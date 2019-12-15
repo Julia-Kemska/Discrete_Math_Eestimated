@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+int a[107][107],m[107],n,s,m1,s2,f2;
+stack <int> st;
+vector <int> res;
+
+int main(){
+cin>>n>>m1;
+for(int i=1;i<=m1;i++){
+        cin>>s2>>f2;
+        a[s2][f2] = 1;
+        a[f2][s2] = 1;}
+    st.push (1);
+    while (!st.empty()) {
+        int v = st.top();
+        int i;
+        for (i=1; i<=n; ++i)
+            if (a[v][i])
+                break;
+        if (i == n+1) {
+            res.push_back (v);
+            st.pop();
+        }
+        else {
+            --a[v][i];
+            --a[i][v];
+            st.push (i);
+        }
+    }
+    for(int i=0;i<res.size();i++){
+        cout<<res[i]<<' ';
+    }
+}
